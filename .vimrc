@@ -77,6 +77,8 @@
     let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{}, 'MruFile':{}, 'MruCmd':{}, 'Bookmark':{}, 'Tag':{}, 'TaggedFile':{}}   
 " }}}
 " Vim UI {{{
+    set colorcolumn=80
+    hi ColorColumn ctermbg=red ctermfg=white guibg=#592929
     set incsearch " BUT do highlight as you type you search phrase
     set laststatus=2 " always show the status line
     set lazyredraw " do not redraw while running macros
@@ -85,7 +87,7 @@
     set listchars=tab:>-,trail:- " show tabs and trailing 
     set matchtime=5 " how many tenths of a second to blink matching brackets for
     set nohlsearch " do not highlight searched for phrases
-    set nostartofline " leave my cursor where it was
+    "set nostartofline " leave my cursor where it was
     set novisualbell " don't blink
     set number " turn on line numbers
     set numberwidth=5 " We are good up to 99999 lines
@@ -121,7 +123,7 @@
     set smartcase " if there are caps, go case-sensitive
     set shiftwidth=4 " auto-indent amount when using cindent, >>, << and stuff like that
     set softtabstop=4 " when hitting tab or backspace, how many spaces should a tab be (see expandtab)
-    set tabstop=8 " real tabs should be 8, and they will show with set list on
+    set tabstop=4 " real tabs should be 8, and they will show with set list on
 " }}}
 " Folding {{{
     set foldenable " Turn on folding
@@ -181,19 +183,12 @@
     map <M-up> <ESC>:NERDTreeToggle<RETURN>
     map <M-down> <ESC>:Tlist<RETURN>
 
-    map <left> <ESC>:NERDTree<RETURN>
-    map <right> <ESC>:TagbarToggle<RETURN>
-    map <up> <ESC>:bp<RETURN>
-    map <down> <ESC>:bn<RETURN>
 " }}}
 " Autocommands {{{
-    " ruby standard 2 spaces, always
-    au BufRead,BufNewFile *.rb,*.rhtml set shiftwidth=2 
-    au BufRead,BufNewFile *.rb,*.rhtml set softtabstop=2 
+    au BufRead,BufNewFile *.py,*.html,*.zpt,*.js,*.css set shiftwidth=4
+    au BufRead,BufNewFile *.py,*.html,*.zpt,*.js,*.css set softtabstop=4
 
     " Override types 
-    au BufNewFile,BufRead *.ahk set filetype=ahk 
-    au BufNewFile,BufRead *.ps1 set filetype=ps1
     au BufNewFile,BufRead *.md set filetype=markdown
     au BufNewFile,BufRead *.dtl set filetype=htmldjango
 
@@ -202,11 +197,12 @@
     au Syntax * RainbowParenthesesLoadRound
     au Syntax * RainbowParenthesesLoadSquare
     au Syntax * RainbowParenthesesLoadBraces
+
 " }}}
 " GUI Settings {{{
 if has("gui_running")
     " Basics
-    colorscheme inkpot " 
+    colorscheme zenburn "
     set guifont=Consolas:h10 " My favorite font
     set guioptions=ce
     "              ||
@@ -225,7 +221,7 @@ endif
 if s:colorful_term
     "256 color --
     let &t_Co=256
-    colorscheme inkpot 
+    colorscheme zenburn
     " restore screen after quitting
     if has("terminfo")
         let &t_Sf="\ESC[3%p1%dm"
@@ -235,6 +231,7 @@ if s:colorful_term
         let &t_Sb="\ESC[4%dm"
     endif
 endif
+
 " }}}
 " Odds n Ends {{{
     hi Folded ctermbg=black guibg=black
