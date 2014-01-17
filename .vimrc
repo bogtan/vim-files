@@ -238,3 +238,5 @@ endif
     set ttymouse=xterm2 " makes it work in everything
     " match ErrorMsg '\%>150v.\+'
 " }}}
+
+source ~/.bundles.vim
